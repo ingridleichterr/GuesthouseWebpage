@@ -20,11 +20,15 @@ public class Booking {
     private String name;
     private String email;
     private String phoneNumber;
+    private boolean bookingConfirmed;
     private boolean isActive;
 
     //foreign keys
     @OneToOne
     private BookingPayment bookingPaymentId;
+
+    @OneToOne
+    private PaymentMethod paymentMethod;
 
     @ManyToOne
     private Room room;
