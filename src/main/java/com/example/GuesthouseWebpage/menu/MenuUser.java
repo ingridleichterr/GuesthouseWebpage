@@ -1,7 +1,7 @@
 package com.example.GuesthouseWebpage.menu;
 
-import com.example.GuesthouseWebpage.model.Customer;
-import com.example.GuesthouseWebpage.service.CustomerService;
+import com.example.GuesthouseWebpage.model.User;
+import com.example.GuesthouseWebpage.service.UserService;
 
 
 import java.util.List;
@@ -9,8 +9,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MenuCustomer {
-    CustomerService customerService = new CustomerService();
+public class MenuUser {
+    UserService userService = new UserService();
 
     private int menuOptions(Scanner input) {
         System.out.println("\n/***************************************************/");
@@ -59,11 +59,11 @@ public class MenuCustomer {
 
     //list all customers case 1
   private void menuListAllCustomers(Scanner input) {
-        List<Customer> listCustomer = customerService.listAllCustomers();
+        List<User> listUser = userService.listAllUsers();
 
-        if (listCustomer.size() > 0) {
+        if (listUser.size() > 0) {
             System.out.println("\nList of all customers:");
-            for (Customer cust : listCustomer) {
+            for (User cust : listUser) {
                 System.out.println(cust.toString());
             }
         } else {
@@ -76,7 +76,7 @@ public class MenuCustomer {
     //save new customer case 2
     public void saveNewCustomer(Scanner input){ //case1
 
-        Customer customer = new Customer();
+        User user = new User();
 
         System.out.println("Menu register new customer");
 
@@ -91,7 +91,7 @@ public class MenuCustomer {
                 invalidName=false;
             }
         }
-        customer.setName(name);
+        user.setName(name);
 
         //phone number adding and checking if valid
         String phoneNumber = null;
@@ -104,7 +104,7 @@ public class MenuCustomer {
                 invalidPhoneNum = false;
             }
         }
-        customer.setPhoneNumber(phoneNumber);
+        user.setPhoneNumber(phoneNumber);
 
         //email adding and checking if valid
         String email = null;
@@ -117,9 +117,9 @@ public class MenuCustomer {
                 invalidEmail = false;
             }
         }
-        customer.setEmail(email);
+        user.setEmail(email);
 
-        customerService.saveCustomer(customer);
+        userService.saveUser(user);
         System.out.println("Customer saved successfully!");
     }
 
@@ -161,7 +161,7 @@ public class MenuCustomer {
 
     //case 3 - count all customers
     public void countTotalCustomers(){
-        long result = customerService.countCustomers();
+        long result = userService.countUsers();
         System.out.println("Total number of customers is: " + result);
     }
 

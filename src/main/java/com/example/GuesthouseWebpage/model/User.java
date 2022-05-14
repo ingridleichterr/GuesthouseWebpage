@@ -5,13 +5,13 @@ import java.time.LocalDate;
 
 //creating table
 @Entity
-public class Customer {
+public class User {
 
     //creating columns
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customerId")
-    private int customerId;
+    @Column(name = "userId")
+    private int userId;
 
     @Column(name = "name")
     private String name;
@@ -26,12 +26,12 @@ public class Customer {
     @Column(name = "dateOfRegister")
     private LocalDate dateOfRegister = LocalDate.now();
 
-    public int getCustomerId() {
-        return customerId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -67,11 +67,10 @@ public class Customer {
     }
 
 //to string method
-
     @Override
     public String toString() {
-        return "Customer{" +
-                "customerId=" + customerId +
+        return "User{" +
+                "userId=" + userId +
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +

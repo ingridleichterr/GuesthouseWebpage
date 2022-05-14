@@ -48,8 +48,8 @@ public class Booking {
     private Extras extras;
 
     @ManyToOne
-    @JoinColumn(name="customerId")
-    private Customer customer;
+    @JoinColumn(name="userId")
+    private User user;
 
 
 
@@ -65,7 +65,6 @@ public class Booking {
     }
 
     //getters and setters
-
     public int getBookingId() {
         return bookingId;
     }
@@ -138,12 +137,12 @@ public class Booking {
         this.room = room;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public User getUser() {
+        return user;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Meal getMeal() {
@@ -163,6 +162,7 @@ public class Booking {
     }
 
     //to string method
+
     @Override
     public String toString() {
         return "Booking{" +
@@ -177,7 +177,7 @@ public class Booking {
                 ", room=" + room +
                 ", meal=" + meal +
                 ", extras=" + extras +
-                ", customer=" + customer +
+                ", user=" + user +
                 '}';
     }
 }

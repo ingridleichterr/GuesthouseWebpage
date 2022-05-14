@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class SubMenuOptions {
     boolean exit = false;
-    private MenuCustomer menuCustomer;
+    private MenuUser menuUser;
     private MenuGuestHouse menuGuestHouse;
     private MenuRoom menuRoom;
     private MenuMeal menuMeal;
@@ -13,7 +13,7 @@ public class SubMenuOptions {
 
     //constructor
     public SubMenuOptions() {
-        this.menuCustomer = new MenuCustomer();
+        this.menuUser = new MenuUser();
         this.menuGuestHouse = new MenuGuestHouse();
         this.menuRoom = new MenuRoom();
         this.menuMeal = new MenuMeal();
@@ -27,7 +27,7 @@ public class SubMenuOptions {
         System.out.println("Main menu ");
         System.out.println("-------------------------------------------------------");
         System.out.println();
-        System.out.println("1: Sub Menu - Customer");
+        System.out.println("1: Sub Menu - User");
         System.out.println("2: Sub Menu - Guesthouse");
         System.out.println("3: Sub Menu - Rooms");
         System.out.println("4: Sub Menu - Meals");
@@ -45,7 +45,7 @@ public class SubMenuOptions {
             int userChoice = menuOptions(input);
             switch (userChoice) {
                 case 1:
-                    this.menuCustomer.menuChoice(input);
+                    this.menuUser.menuChoice(input);
                     break;
                 case 2:
                     this.menuGuestHouse.menuChoice(input);

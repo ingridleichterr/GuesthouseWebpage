@@ -3,12 +3,11 @@ package com.example.GuesthouseWebpage.menu;
 import com.example.GuesthouseWebpage.model.*;
 import com.example.GuesthouseWebpage.service.BookingService;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuBooking {
-    BookingService repositoryBooking = new BookingService();
+    BookingService bookingService = new BookingService();
 
     private int menuOptions(Scanner input) {
         System.out.println("\n/***************************************************/");
@@ -58,7 +57,7 @@ public class MenuBooking {
     //case 1 add new booking
     public void saveNewBooking(Scanner input) {
         Booking booking = new Booking();
-        System.out.println("Menu register new customer");
+        System.out.println("Menu register new booking");
 
         System.out.print("Type arrival date (yyyy-mm-dd): ");
         booking.setArrivalDate(input.next());
@@ -98,12 +97,12 @@ public class MenuBooking {
         extraObject.setExtraId(input.nextInt());
         booking.setExtras(extraObject);
 
-        System.out.print("Type customerId: ");
-        Customer customerObject = new Customer();
-        customerObject.setCustomerId(input.nextInt());
-        booking.setCustomer(customerObject);
+        System.out.print("Type userId: ");
+        User userObject = new User();
+        userObject.setUserId(input.nextInt());
+        booking.setUser(userObject);
 
-        BookingService.saveBooking(booking);
+        bookingService.saveBooking(booking);
         System.out.println("Booking is saved successfully!" +
                 "\nPlease wait for booking confirmation, " +
                 "which will be sent to entered e-mail.");
