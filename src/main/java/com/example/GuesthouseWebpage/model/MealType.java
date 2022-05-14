@@ -15,5 +15,6 @@ public class MealType {
     private long mealId;
     private String name;
     private String description;
+    private boolean isActive;
 
 }

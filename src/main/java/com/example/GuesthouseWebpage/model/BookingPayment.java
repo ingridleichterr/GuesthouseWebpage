@@ -19,4 +19,5 @@ public class BookingPayment {
     @ManyToOne
     private PaymentMethod paymentMethod;
 
+
 }

@@ -18,5 +18,6 @@ public class RoomType {
     private String description;
     private String priceRange;
     private int quantity;
+    private boolean isActive;
 
 }

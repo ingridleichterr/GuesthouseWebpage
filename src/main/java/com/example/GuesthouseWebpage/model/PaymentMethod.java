@@ -14,5 +14,6 @@ public class PaymentMethod {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long paymentMethodId;
     private String type;
+    private boolean isActive;
 
 }

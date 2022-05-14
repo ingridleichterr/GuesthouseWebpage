@@ -26,8 +26,8 @@ public class User {
     private String email;
 
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "dateOfRegister")
     private LocalDate dateOfRegister = LocalDate.now();
 
+    private boolean isActive;
 
 }

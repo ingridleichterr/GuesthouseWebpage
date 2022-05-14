@@ -15,6 +15,7 @@ public class Extras {
     private String name;
     private String description;
     private double price;
+    private boolean isActive;
 
     //foreign keys
     //vt menuMeal classi kuidas teha

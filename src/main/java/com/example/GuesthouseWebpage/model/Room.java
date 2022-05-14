@@ -23,5 +23,6 @@ public class Room {
     //foreign key
     @ManyToOne
     private GuestHouse guestHouse;
+    private boolean isActive;
 
 }

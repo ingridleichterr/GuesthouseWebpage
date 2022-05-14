@@ -20,6 +20,7 @@ public class Booking {
     private String name;
     private String email;
     private String phoneNumber;
+    private boolean isActive;
 
     //foreign keys
     @OneToOne
