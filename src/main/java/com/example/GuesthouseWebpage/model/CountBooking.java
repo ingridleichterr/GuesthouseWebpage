@@ -1,5 +1,6 @@
 package com.example.GuesthouseWebpage.model;
 
+
 public class CountBooking {
 
     private long count;

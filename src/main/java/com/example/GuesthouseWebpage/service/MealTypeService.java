@@ -1,24 +1,27 @@
 package com.example.GuesthouseWebpage.service;
 
+import com.example.GuesthouseWebpage.model.MealType;
 import com.example.GuesthouseWebpage.repository.MealTypeRepository;
-import com.example.GuesthouseWebpage.util.DBUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityManager;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class MealTypeService {
-    private MealTypeRepository mealTypeRepository;
-    private EntityManager em;
-
-    public MealTypeService() {
-        em = DBUtil.getEntityManager();
-    }
-
 
     @Autowired
-    public MealTypeService(MealTypeRepository mealTypeRepository) {
-        this.mealTypeRepository = mealTypeRepository;
+    private MealTypeRepository mealTypeRepository;
+
+    //method to create mealType
+    public void createMealType(MealType mealType){
+        mealTypeRepository.save(mealType);
     }
+
+    //method to update mealType by mealType id
+
+    //method to delete mealType by mealType id
+
+
+
 }
