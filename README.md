@@ -10,6 +10,6 @@ view, accept, update and cancel bookings.
 Login is optional - if you want to you can create user and login, 
 or you can continue without loging in or signing up
 
-Will have offline
+Will have offline payment method
 
 Tecnologies used: hibernate for database, springboot for backend, angular for frontend
