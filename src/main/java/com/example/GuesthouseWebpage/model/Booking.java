@@ -3,6 +3,7 @@ package com.example.GuesthouseWebpage.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 //creating table
@@ -24,12 +25,6 @@ public class Booking {
     private boolean isActive;
 
     //foreign keys
-    @OneToOne
-    private BookingPayment bookingPaymentId;
-
-    @OneToOne
-    private PaymentMethod paymentMethod;
-
     @ManyToOne
     private Room room;
 
@@ -41,4 +36,9 @@ public class Booking {
 
     @ManyToOne
     private User user;
+
+    private BigDecimal totalPrice;
+
+    @Enumerated(EnumType.STRING)
+    private PaymentMethodEnum paymentMethod;
 }

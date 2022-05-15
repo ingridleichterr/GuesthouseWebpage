@@ -3,6 +3,7 @@ package com.example.GuesthouseWebpage.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 //create table
 @Data
@@ -15,12 +16,12 @@ public class Meal {
     private long mealId;
     private String name;
     private String description;
-    private double price;
+    private BigDecimal price;
     private boolean isActive;
 
     //foreign keys
-    @ManyToOne
-    private MealType mealType;
+    @Enumerated(EnumType.STRING)
+    private MealTypeEnum mealTypeEnum;
 
     @ManyToOne
     private GuestHouse guestHouse;

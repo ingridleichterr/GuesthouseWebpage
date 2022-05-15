@@ -1,6 +1,5 @@
 package com.example.GuesthouseWebpage.service;
 
-import com.example.GuesthouseWebpage.model.MealType;
 import com.example.GuesthouseWebpage.model.Room;
 import com.example.GuesthouseWebpage.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;

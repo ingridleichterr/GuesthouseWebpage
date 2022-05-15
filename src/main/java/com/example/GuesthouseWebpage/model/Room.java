@@ -3,6 +3,7 @@ package com.example.GuesthouseWebpage.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 //create table
 @Data
@@ -12,14 +13,15 @@ public class Room {
     //create columns
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long roomId;
+    private Long roomId;
     private String name;
-    //foreign key
-    @OneToOne
+
+    @Enumerated(EnumType.STRING)
     private RoomType roomType;
 
-    private double price;
+    private BigDecimal price;
     private int availability;
+
     //foreign key
     @ManyToOne
     private GuestHouse guestHouse;

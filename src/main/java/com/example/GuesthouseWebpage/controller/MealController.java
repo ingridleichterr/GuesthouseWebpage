@@ -1,13 +1,18 @@
 package com.example.GuesthouseWebpage.controller;
 
+import com.example.GuesthouseWebpage.model.Meal;
 import com.example.GuesthouseWebpage.service.MealService;
-import com.example.GuesthouseWebpage.service.MealTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-//controller to handle meal and mealtype requests
+import java.util.Date;
+import java.util.List;
+
+//controller to handle meal requests
 @RestController
 @RequestMapping("/meals")
 public class MealController {
@@ -15,8 +20,51 @@ public class MealController {
     @Autowired
     private MealService mealService;
 
-    @Autowired
-    private MealTypeService mealTypeService;
+
+    @PostMapping
+    public ResponseEntity<?> createMeal(@RequestBody Meal meal){
+        mealService.createMeal(meal);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Meal>updateMeal(@RequestBody Meal meal) {
+        mealService.updateMeal(meal);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setDate(new Date().toInstant());
+
+        return new ResponseEntity<>(meal, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/delete/{id}")
+    public ResponseEntity<?> deleteMeal(@PathVariable Long id) {
+        mealService.deleteMealById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/full-delete/{id}")
+    public ResponseEntity<?> fullDeleteMeal(@PathVariable Long id) {
+        mealService.fullDeleteMealById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/restore/{id}")
+    public ResponseEntity<?> restoreMeal(@PathVariable Long id) {
+        mealService.restoreMealById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping
+    public List<Meal> getAllMeals(){
+        return mealService.getAllMeals();
+    }
+
+    @GetMapping
+    public List<Meal> getAllActiveMeals(){
+        return mealService.getActiveMeals();
+    }
 
 
 
