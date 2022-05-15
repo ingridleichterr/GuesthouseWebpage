@@ -20,15 +20,18 @@ import java.util.List;
 @RequestMapping("/booking")
 public class BookingController {
 
+    //field injection
     @Autowired
     private BookingService bookingService;
 
+    //create method
     @PostMapping
     public ResponseEntity<?> createBooking(@RequestBody Booking booking){
         bookingService.createBooking(booking);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    //update method
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
         public ResponseEntity<Booking>updateBooking(@RequestBody Booking booking) throws BookingNotFoundException {
         bookingService.updateBooking(booking);
@@ -40,32 +43,38 @@ public class BookingController {
         return new ResponseEntity<>(booking, headers, HttpStatus.OK);
     }
 
+    //delete/hide/setActiveFalse method
     @GetMapping("/delete/{id}")
     public ResponseEntity<?> deleteBooking(@PathVariable Long id) {
         bookingService.deleteBookingById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    //delete method
     @GetMapping("/full-delete/{id}")
     public ResponseEntity<?> fullDeleteBooking(@PathVariable Long id) throws BookingNotFoundException {
         bookingService.fullDeleteBookingById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    //restore/unhide/setAvticeTrue method
     @GetMapping("/restore/{id}")
     public ResponseEntity<?> restoreBooking(@PathVariable Long id) {
         bookingService.restoreBookingById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    //list all method
     @GetMapping
     public List<Booking> getAllBookings(){
         return bookingService.getAllBookings();
     }
 
+    //list all active method
     @GetMapping
     public List<Booking> getAllActiveBookings(){
         return bookingService.getActiveBookings();
     }
 
+    //list all by
 }

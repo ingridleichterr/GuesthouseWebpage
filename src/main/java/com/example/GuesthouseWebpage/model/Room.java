@@ -17,7 +17,7 @@ public class Room {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    private RoomType roomType;
+    private RoomTypeEnum roomTypeEnum;
 
     private BigDecimal price;
     private int availability;
@@ -25,6 +25,7 @@ public class Room {
     //foreign key
     @ManyToOne
     private GuestHouse guestHouse;
+
     private boolean isActive;
 
 }

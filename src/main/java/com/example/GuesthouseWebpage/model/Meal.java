@@ -13,7 +13,7 @@ public class Meal {
     //create columns
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long mealId;
+    private Long mealId;
     private String name;
     private String description;
     private BigDecimal price;

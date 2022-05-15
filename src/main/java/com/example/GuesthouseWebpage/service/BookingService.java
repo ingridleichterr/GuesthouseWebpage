@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,7 +39,6 @@ public class BookingService {
         } else {
             throw new BookingNotFoundException(booking.getId());
         }
-
     }
 
     //method to "delete" booking by booking id - set active false so no one can see the booking
@@ -93,7 +93,10 @@ public class BookingService {
                 .collect(Collectors.toList());
     }
 
+    //calculate total amount of booking
+    public void totalAmountOfBooking(Long id){
 
+    }
 
     //list all bookings in one date you receive from user
 

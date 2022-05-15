@@ -14,7 +14,7 @@ public class User {
     //creating columns
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long userId;
+    private Long userId;
 
     @NotBlank(message="Name can not be empty!")
     private String name;

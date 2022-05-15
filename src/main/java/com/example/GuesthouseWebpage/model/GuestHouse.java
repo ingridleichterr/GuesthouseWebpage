@@ -12,7 +12,7 @@ public class GuestHouse {
     //creating columns
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long guestHouseId;
+    private Long guestHouseId;
     private String name;
     private String address;
     private String phoneNumber;

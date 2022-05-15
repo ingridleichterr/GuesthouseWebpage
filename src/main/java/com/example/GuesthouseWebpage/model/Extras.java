@@ -11,7 +11,7 @@ public class Extras {
     //create columns
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long extraId;
+    private Long extraId;
     private String name;
     private String description;
     private double price;
