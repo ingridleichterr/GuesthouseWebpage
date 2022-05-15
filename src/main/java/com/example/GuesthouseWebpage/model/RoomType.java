@@ -1,6 +1,6 @@
 package com.example.GuesthouseWebpage.model;
 
-public enum RoomTypeEnum {
+public enum RoomType {
     APARTMENT,
     SINGLE_ROOM,
     DOUBLE_ROOM,

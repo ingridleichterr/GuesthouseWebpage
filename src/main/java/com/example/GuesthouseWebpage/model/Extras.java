@@ -3,6 +3,7 @@ package com.example.GuesthouseWebpage.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -14,11 +15,10 @@ public class Extras {
     private Long extraId;
     private String name;
     private String description;
-    private double price;
+    private BigDecimal price;
     private boolean isActive;
 
     //foreign keys
-    //vt menuMeal classi kuidas teha
     @ManyToOne
     private GuestHouse guestHouse;
 

@@ -21,7 +21,7 @@ public class Meal {
 
     //foreign keys
     @Enumerated(EnumType.STRING)
-    private MealTypeEnum mealTypeEnum;
+    private MealType mealType;
 
     @ManyToOne
     private GuestHouse guestHouse;

@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 //creating table
 @Data
@@ -21,24 +22,27 @@ public class Booking {
     private String name;
     private String email;
     private String phoneNumber;
-    private boolean bookingConfirmed;
-    private boolean isActive;
 
     //foreign keys
-    @ManyToOne
-    private Room room;
+    @OneToMany
+    private List<Room> rooms;
 
-    @ManyToOne
-    private Meal meal;
+    @OneToMany
+    private List<Meal> meals;
 
-    @ManyToOne
-    private Extras extras;
-
-    @ManyToOne
-    private User user;
+    @OneToMany
+    private List<Extras> extras;
 
     private BigDecimal totalPrice;
 
     @Enumerated(EnumType.STRING)
-    private PaymentMethodEnum paymentMethod;
+    private PaymentMethod paymentMethod;
+
+
+    @OneToOne
+    private User user;
+
+    private boolean isBookingConfirmed;
+    private boolean isActive;
+    private boolean isPaid;
 }

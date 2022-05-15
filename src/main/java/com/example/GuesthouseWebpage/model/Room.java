@@ -17,13 +17,12 @@ public class Room {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    private RoomTypeEnum roomTypeEnum;
+    private RoomType roomType;
 
     private BigDecimal price;
-    private int availability;
 
     //foreign key
-    @ManyToOne
+    @OneToOne
     private GuestHouse guestHouse;
 
     private boolean isActive;

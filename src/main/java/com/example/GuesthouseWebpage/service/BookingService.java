@@ -3,6 +3,9 @@ package com.example.GuesthouseWebpage.service;
 
 import com.example.GuesthouseWebpage.exceptions.BookingNotFoundException;
 import com.example.GuesthouseWebpage.model.Booking;
+import com.example.GuesthouseWebpage.model.Extras;
+import com.example.GuesthouseWebpage.model.Meal;
+import com.example.GuesthouseWebpage.model.Room;
 import com.example.GuesthouseWebpage.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +22,6 @@ public class BookingService {
 
     @Autowired
     private BookingRepository bookingRepository;
-
 
     //method to create booking
     public void createBooking(Booking booking){
@@ -94,8 +96,20 @@ public class BookingService {
     }
 
     //calculate total amount of booking
-    public void totalAmountOfBooking(Long id){
+    public BigDecimal calculateTotalAmountOfBooking(Booking booking){
+        BigDecimal totalBookingAmount = BigDecimal.ZERO;
 
+        for(Room room: booking.getRooms()) {
+            totalBookingAmount = totalBookingAmount.add(room.getPrice());
+        }
+        for (Meal meal : booking.getMeals()){
+            totalBookingAmount = totalBookingAmount.add(meal.getPrice());
+        }
+        for (Extras extras : booking.getExtras()){
+            totalBookingAmount = totalBookingAmount.add(extras.getPrice());
+        }
+
+        return totalBookingAmount;
     }
 
     //list all bookings in one date you receive from user

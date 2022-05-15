@@ -1,7 +1,7 @@
 package com.example.GuesthouseWebpage.model;
 
 
-public enum MealTypeEnum {
+public enum MealType {
     DINNER,
     BREAKFAST,
     LUNCH
