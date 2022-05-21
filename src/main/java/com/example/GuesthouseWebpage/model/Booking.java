@@ -38,10 +38,13 @@ public class Booking {
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
+    private String comments;
+
     @OneToOne
     private User user;
 
     private boolean isBookingConfirmed;
     private boolean isActive;
     private boolean isPaid;
+
 }
