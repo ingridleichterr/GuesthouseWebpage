@@ -43,7 +43,7 @@ public class Booking {
     @OneToOne
     private User user;
 
-    private boolean isBookingConfirmed;
+    private boolean isConfirmed;
     private boolean isActive;
     private boolean isPaid;
 
