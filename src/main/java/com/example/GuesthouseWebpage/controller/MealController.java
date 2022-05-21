@@ -61,7 +61,7 @@ public class MealController {
         return mealService.getAllMeals();
     }
 
-    @GetMapping
+    @GetMapping("/active")
     public List<Meal> getAllActiveMeals(){
         return mealService.getActiveMeals();
     }

@@ -71,7 +71,7 @@ public class BookingController {
     }
 
     //list all active method
-    @GetMapping
+    @GetMapping("/active")
     public List<Booking> getAllActiveBookings(){
         return bookingService.getActiveBookings();
     }

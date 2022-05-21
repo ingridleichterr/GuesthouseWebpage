@@ -14,7 +14,7 @@ public class User {
     //creating columns
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+    private Long id;
 
     //@NotBlank(message="Name can not be empty!")
     private String name;
@@ -25,8 +25,7 @@ public class User {
     //@NotBlank(message="Email can not be empty!")
     private String email;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private LocalDate dateOfRegister = LocalDate.now();
+    private LocalDate registrationDate;
 
     private boolean isActive;
 

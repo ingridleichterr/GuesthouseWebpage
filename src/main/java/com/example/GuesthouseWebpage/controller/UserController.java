@@ -60,7 +60,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping
+    @GetMapping("/active")
     public List<User> getAllActiveUsers(){
         return userService.getActiveUsers();
     }

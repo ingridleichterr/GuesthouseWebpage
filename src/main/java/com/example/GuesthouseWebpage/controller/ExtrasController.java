@@ -61,7 +61,7 @@ public class ExtrasController {
         return extrasService.getAllExtras();
     }
 
-    @GetMapping
+    @GetMapping("/active")
     public List<Extras> getAllActiveExtras(){
         return extrasService.getActiveExtras();
     }

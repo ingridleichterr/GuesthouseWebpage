@@ -60,7 +60,7 @@ public class RoomController {
         return roomService.getAllRooms();
     }
 
-    @GetMapping
+    @GetMapping("/active")
     public List<Room> getAllActiveRooms(){
         return roomService.getActiveRooms();
     }

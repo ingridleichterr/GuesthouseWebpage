@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Entity
@@ -12,14 +13,17 @@ public class Extras {
     //create columns
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long extraId;
+    private Long id;
     private String name;
     private String description;
     private BigDecimal price;
     private boolean isActive;
 
     //foreign keys
-    @ManyToOne
+    @OneToOne
     private GuestHouse guestHouse;
+
+    @OneToMany
+    private List<ExtrasImage> extrasImages;
 
 }

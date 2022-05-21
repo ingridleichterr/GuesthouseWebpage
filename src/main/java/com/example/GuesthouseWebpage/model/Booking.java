@@ -38,7 +38,6 @@ public class Booking {
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
-
     @OneToOne
     private User user;
 
