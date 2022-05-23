@@ -91,7 +91,7 @@ public class BookingService {
     //list all confirmed bookings
     public List<Booking> getConfirmedBookings(){
         return getAllBookings().stream()
-                .filter(Booking::isBookingConfirmed)
+                .filter(Booking::isConfirmed)
                 .collect(Collectors.toList());
     }
 

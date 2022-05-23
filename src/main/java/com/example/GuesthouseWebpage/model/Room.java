@@ -15,16 +15,15 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
+
+    private String description;
 
     @Enumerated(EnumType.STRING)
     private RoomType roomType;
 
     private BigDecimal price;
-
-    //foreign key
-    @OneToOne
-    private GuestHouse guestHouse;
 
     private boolean isActive;
 

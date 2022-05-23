@@ -15,6 +15,7 @@ public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
     private String description;
     private BigDecimal price;
@@ -24,8 +25,6 @@ public class Meal {
     @Enumerated(EnumType.STRING)
     private MealType mealType;
 
-    @ManyToOne
-    private GuestHouse guestHouse;
 
     @OneToMany
     private List<MealImage> mealImages;

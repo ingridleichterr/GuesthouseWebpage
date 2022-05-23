@@ -20,9 +20,6 @@ public class Extras {
     private BigDecimal price;
     private boolean isActive;
 
-    //foreign keys
-    @OneToOne
-    private GuestHouse guestHouse;
 
     @OneToMany
     private List<ExtrasImage> extrasImages;
