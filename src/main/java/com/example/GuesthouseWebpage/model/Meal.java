@@ -25,9 +25,11 @@ public class Meal {
     @Enumerated(EnumType.STRING)
     private MealType mealType;
 
-
+    /*
     @OneToMany
     private List<MealImage> mealImages;
+
+     */
 
 
 }

@@ -27,7 +27,8 @@ public class Room {
 
     private boolean isActive;
 
+    /*
     @OneToMany
     private List<RoomImage> roomImages;
-
+     */
 }

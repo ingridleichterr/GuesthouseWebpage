@@ -15,6 +15,7 @@ import java.util.List;
 //controller to handle meal requests
 @RestController
 @RequestMapping("/meals")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class MealController {
 
     @Autowired
