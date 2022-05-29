@@ -1,6 +1,6 @@
 package com.example.GuesthouseWebpage.service;
 
-import com.example.GuesthouseWebpage.model.Booking;
+import com.example.GuesthouseWebpage.exceptions.ExtraNotFoundException;
 import com.example.GuesthouseWebpage.model.Extras;
 import com.example.GuesthouseWebpage.repository.ExtrasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,34 +19,38 @@ public class ExtrasService {
     private ExtrasRepository extrasRepository;
 
     //method to create extra
-    public void createExtra(Extras extra){
-        extra.setActive(true);
-        extrasRepository.save(extra);
+    public void createExtra(Extras extras){
+        extras.setActive(true);
+        extrasRepository.save(extras);
     }
     //method to find extras by id
-    public Optional<Extras> findExtraById(Long id) {
-        return extrasRepository.findById(id);
+    public Extras findExtraById(Long id) throws ExtraNotFoundException {
+        Optional<Extras> optionalExtras = extrasRepository.findById(id);
+
+        if(optionalExtras.isEmpty()) {
+            throw new ExtraNotFoundException(id);
+        } else {
+            return optionalExtras.get();
+        }
     }
 
     //method to update extra by id
-    public void updateExtra(Extras extra) {
-        extrasRepository.saveAndFlush(extra);
+    public void updateExtra(Extras extras) {
+        extrasRepository.saveAndFlush(extras);
     }
 
     //method to "delete" extra by id - set active false so no one can see the extra
-    public void deleteExtraById(Long id) {
-        findExtraById(id).ifPresent(extra -> {
-            extra.setActive(false);
-            updateExtra(extra);
-        });
+    public void deleteExtraById(Long id) throws ExtraNotFoundException {
+        Extras extras = findExtraById(id);
+        extras.setActive(false);
+        updateExtra(extras);
     }
 
     //method to restore extra
-    public void restoreExtraById(Long id){
-        findExtraById(id).ifPresent(extra -> {
-            extra.setActive(true);
-            updateExtra(extra);
-        });
+    public void restoreExtraById(Long id)throws ExtraNotFoundException {
+        Extras extras = findExtraById(id);
+        extras.setActive(true);
+        updateExtra(extras);
     }
 
     //method to really fully delete extra by id

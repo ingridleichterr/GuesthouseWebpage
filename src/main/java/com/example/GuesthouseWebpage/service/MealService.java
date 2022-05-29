@@ -1,5 +1,6 @@
 package com.example.GuesthouseWebpage.service;
 
+import com.example.GuesthouseWebpage.exceptions.MealNotFoundException;
 import com.example.GuesthouseWebpage.model.Meal;
 import com.example.GuesthouseWebpage.repository.MealRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,14 @@ public class MealService {
         mealRepository.save(meal);
     }
     //method to find meals by id
-    public Optional<Meal> findMealById(Long id) {
-        return mealRepository.findById(id);
+    public Meal findMealById(Long id) throws MealNotFoundException {
+        Optional<Meal> optionalMeal = mealRepository.findById(id);
+
+        if(optionalMeal.isEmpty()) {
+            throw new MealNotFoundException(id);
+        } else {
+            return optionalMeal.get();
+        }
     }
 
     //method to update meal by id
@@ -34,19 +41,17 @@ public class MealService {
     }
 
     //method to "delete" meal by id - set active false so no one can see the extra
-    public void deleteMealById(Long id) {
-        findMealById(id).ifPresent(meal -> {
-            meal.setActive(false);
-            updateMeal(meal);
-        });
+    public void deleteMealById(Long id)throws MealNotFoundException {
+        Meal meal = findMealById(id);
+        meal.setActive(false);
+        updateMeal(meal);
     }
 
     //method to restore meal
-    public void restoreMealById(Long id){
-        findMealById(id).ifPresent(meal -> {
-            meal.setActive(true);
-            updateMeal(meal);
-        });
+    public void restoreMealById(Long id) throws MealNotFoundException {
+        Meal meal = findMealById(id);
+        meal.setActive(true);
+        updateMeal(meal);
     }
 
     //method to really fully delete meal by id

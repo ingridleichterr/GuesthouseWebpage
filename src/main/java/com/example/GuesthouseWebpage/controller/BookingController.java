@@ -18,6 +18,7 @@ import java.util.List;
 //controller to handle booking requests
 @RestController
 @RequestMapping("/booking")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class BookingController {
 
     //field injection
