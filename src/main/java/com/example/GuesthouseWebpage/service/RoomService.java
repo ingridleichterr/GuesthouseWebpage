@@ -1,5 +1,6 @@
 package com.example.GuesthouseWebpage.service;
 
+import com.example.GuesthouseWebpage.exceptions.RoomNotFoundException;
 import com.example.GuesthouseWebpage.model.Room;
 import com.example.GuesthouseWebpage.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,14 @@ public class RoomService {
         roomRepository.save(room);
     }
     //method to find room by id
-    public Optional<Room> findRoomById(Long id) {
-        return roomRepository.findById(id);
+    public Room findRoomById(Long id) throws RoomNotFoundException {
+        Optional<Room> optionalRoom = roomRepository.findById(id);
+
+        if(optionalRoom.isEmpty()) {
+            throw new RoomNotFoundException(id);
+        } else {
+            return optionalRoom.get();
+        }
     }
 
     //method to update room by id
@@ -33,19 +40,17 @@ public class RoomService {
     }
 
     //method to "delete" room by id - set active false so no one can see the extra
-    public void deleteRoomById(Long id) {
-        findRoomById(id).ifPresent(room -> {
-            room.setActive(false);
-            updateRoom(room);
-        });
+    public void deleteRoomById(Long id) throws RoomNotFoundException {
+        Room room = findRoomById(id);
+        room.setActive(false);
+        updateRoom(room);
     }
 
     //method to restore room
-    public void restoreRoomById(Long id){
-        findRoomById(id).ifPresent(room -> {
-            room.setActive(true);
-            updateRoom(room);
-        });
+    public void restoreRoomById(Long id) throws RoomNotFoundException {
+        Room room = findRoomById(id);
+        room.setActive(true);
+        updateRoom(room);
     }
 
     //method to really fully delete room by id

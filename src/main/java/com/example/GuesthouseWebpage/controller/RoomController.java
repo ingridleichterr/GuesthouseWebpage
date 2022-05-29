@@ -1,5 +1,6 @@
 package com.example.GuesthouseWebpage.controller;
 
+import com.example.GuesthouseWebpage.exceptions.RoomNotFoundException;
 import com.example.GuesthouseWebpage.model.Room;
 import com.example.GuesthouseWebpage.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import java.util.List;
 //Controller to handle room requests
 @RestController
 @RequestMapping("/rooms")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class RoomController {
 
     @Autowired
@@ -39,8 +41,12 @@ public class RoomController {
 
     @GetMapping("/delete/{id}")
     public ResponseEntity<?> deleteRoom(@PathVariable Long id) {
-        roomService.deleteRoomById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try {
+            roomService.deleteRoomById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch(RoomNotFoundException roomNotFoundException) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/full-delete/{id}")
@@ -50,9 +56,13 @@ public class RoomController {
     }
 
     @GetMapping("/restore/{id}")
-    public ResponseEntity<?> restoreRoom(@PathVariable Long id) {
-        roomService.restoreRoomById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> restoreRoom(@PathVariable Long id) throws RoomNotFoundException {
+        try {
+            roomService.restoreRoomById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (RoomNotFoundException roomNotFoundException) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping
@@ -65,6 +75,17 @@ public class RoomController {
         return roomService.getActiveRooms();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getRoomById(@PathVariable Long id) {
+        try{
+            Room room = roomService.findRoomById(id);
+            return new ResponseEntity<>(room, HttpStatus.OK);
+        } catch (RoomNotFoundException roomNotFoundException){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
+
+    }
 
 
 }
