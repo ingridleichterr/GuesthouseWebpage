@@ -1,7 +1,5 @@
 package com.example.GuesthouseWebpage.controller;
 
-
-
 import com.example.GuesthouseWebpage.exceptions.BookingNotFoundException;
 import com.example.GuesthouseWebpage.model.Booking;
 import com.example.GuesthouseWebpage.service.BookingService;
@@ -47,8 +45,13 @@ public class BookingController {
     //delete/hide/setActiveFalse method
     @GetMapping("/delete/{id}")
     public ResponseEntity<?> deleteBooking(@PathVariable Long id) {
-        bookingService.deleteBookingById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try {
+            bookingService.deleteBookingById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (BookingNotFoundException bookingNotFoundException) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
     }
 
     //delete method
@@ -61,8 +64,22 @@ public class BookingController {
     //restore/unhide/setAvticeTrue method
     @GetMapping("/restore/{id}")
     public ResponseEntity<?> restoreBooking(@PathVariable Long id) {
-        bookingService.restoreBookingById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try {
+            bookingService.restoreBookingById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (BookingNotFoundException bookingNotFoundException){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getBookingById(@PathVariable Long id) {
+        try{
+            Booking booking = bookingService.findBookingById(id);
+            return new ResponseEntity<>(booking, HttpStatus.OK);
+        } catch (BookingNotFoundException bookingNotFoundException){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     //list all method

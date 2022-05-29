@@ -2,6 +2,7 @@ package com.example.GuesthouseWebpage.service;
 
 
 import com.example.GuesthouseWebpage.exceptions.BookingNotFoundException;
+import com.example.GuesthouseWebpage.exceptions.MealNotFoundException;
 import com.example.GuesthouseWebpage.model.Booking;
 import com.example.GuesthouseWebpage.model.Extras;
 import com.example.GuesthouseWebpage.model.Meal;
@@ -30,54 +31,43 @@ public class BookingService {
     }
 
     //method to find booking by id
-    public Optional<Booking> findBookingById(Long id) {
-        return bookingRepository.findById(id);
+    public Booking findBookingById(Long id) throws BookingNotFoundException {
+        Optional<Booking> optionalBooking = bookingRepository.findById(id);
+
+        if(optionalBooking.isEmpty()) {
+            throw new BookingNotFoundException(id);
+        } else {
+            return optionalBooking.get();
+        }
     }
 
     //method to update booking by bookingId
-    public void updateBooking(Booking booking) throws BookingNotFoundException {
-        if (findBookingById(booking.getId()).isPresent()){
-            bookingRepository.saveAndFlush(booking);
-        } else {
-            throw new BookingNotFoundException(booking.getId());
-        }
+    public void updateBooking(Booking booking) {
+        bookingRepository.saveAndFlush(booking);
     }
 
     //method to "delete" booking by booking id - set active false so no one can see the booking
-    public void deleteBookingById(Long id) {
-            findBookingById(id).ifPresent(booking -> {
-                booking.setActive(false);
-                try {
-                    updateBooking(booking);
-                } catch (BookingNotFoundException e) {
-                    e.printStackTrace();
-                }
-            });
+    public void deleteBookingById(Long id) throws BookingNotFoundException {
+        Booking booking = findBookingById(id);
+        booking.setActive(false);
+        updateBooking(booking);
     }
 
     //method to restore booking
-    public void restoreBookingById(Long id){
-        findBookingById(id).ifPresent(booking -> {
-            booking.setActive(true);
-            try {
-                updateBooking(booking);
-            } catch (BookingNotFoundException e) {
-                e.printStackTrace();
-            }
-        });
+    public void restoreBookingById(Long id) throws BookingNotFoundException {
+        Booking booking = findBookingById(id);
+        booking.setActive(true);
+        updateBooking(booking);
     }
 
     //method to really fully delete booking by booking id
-    public void fullDeleteBookingById(Long id) throws BookingNotFoundException {
-        if (findBookingById(id).isPresent()) {
-            bookingRepository.deleteById(id);
-        } else {
-            throw new BookingNotFoundException(id);
-        }
+    public void fullDeleteBookingById(Long id) {
+        bookingRepository.deleteById(id);
     }
 
     //list all bookings
     public List<Booking> getAllBookings(){
+
         return bookingRepository.findAll();
     }
 
