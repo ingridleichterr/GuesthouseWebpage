@@ -2,7 +2,6 @@ package com.example.GuesthouseWebpage.service;
 
 
 import com.example.GuesthouseWebpage.exceptions.BookingNotFoundException;
-import com.example.GuesthouseWebpage.exceptions.MealNotFoundException;
 import com.example.GuesthouseWebpage.model.Booking;
 import com.example.GuesthouseWebpage.model.Extras;
 import com.example.GuesthouseWebpage.model.Meal;
