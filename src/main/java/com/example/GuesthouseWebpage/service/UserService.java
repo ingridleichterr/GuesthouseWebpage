@@ -27,26 +27,21 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public Optional<User> findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+
+    public Optional<User> findByEmailAndPassword(String email, String password) {
+        return userRepository.findByEmailAndPassword(email, password);
+    }
+
+
     //method to update user by id
     public void updateUser(User user) {
         userRepository.saveAndFlush(user);
     }
 
-    //method to "delete" user by id - set active false so no one can see the extra
-    public void deleteUserById(Long id) {
-        findUserById(id).ifPresent(user -> {
-            user.setActive(false);
-            updateUser(user);
-        });
-    }
-
-    //method to restore user
-    public void restoreUserById(Long id){
-        findUserById(id).ifPresent(user -> {
-            user.setActive(true);
-            updateUser(user);
-        });
-    }
 
     //method to really fully delete user by id
     public void fullDeleteUserById(Long id) {
