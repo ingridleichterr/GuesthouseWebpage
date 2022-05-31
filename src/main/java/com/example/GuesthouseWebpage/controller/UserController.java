@@ -38,11 +38,6 @@ public class UserController {
         return new ResponseEntity<>(user, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/delete/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
-        userService.deleteUserById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     @GetMapping("/full-delete/{id}")
     public ResponseEntity<?> fullDeleteUser(@PathVariable Long id) {
@@ -50,11 +45,6 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/restore/{id}")
-    public ResponseEntity<?> restoreUser(@PathVariable Long id) {
-        userService.restoreUserById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     @GetMapping
     public List<User> getAllUsers(){
