@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -99,6 +101,12 @@ public class BookingService {
         }
 
         return totalBookingAmount;
+    }
+
+    public List<Room> addRoomsToBooking(Room room){
+        List<Room>roomList=new ArrayList<>();
+        roomList.add(room);
+        return roomList;
     }
 
     //list all bookings in one date you receive from user

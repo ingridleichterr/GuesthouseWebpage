@@ -1,5 +1,8 @@
 package com.example.GuesthouseWebpage.service;
 
+import com.example.GuesthouseWebpage.exceptions.RoomNotFoundException;
+import com.example.GuesthouseWebpage.exceptions.UserNotFoundException;
+import com.example.GuesthouseWebpage.model.Room;
 import com.example.GuesthouseWebpage.model.User;
 import com.example.GuesthouseWebpage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +25,16 @@ public class UserService {
         user.setActive(true);
         userRepository.save(user);
     }
+
     //method to find user by id
-    public Optional<User> findUserById(Long id) {
-        return userRepository.findById(id);
+    public User findUserById(Long id) throws UserNotFoundException {
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if(optionalUser.isEmpty()) {
+            throw new UserNotFoundException(id);
+        } else {
+            return optionalUser.get();
+        }
     }
 
     public Optional<User> findUserByEmail(String email) {

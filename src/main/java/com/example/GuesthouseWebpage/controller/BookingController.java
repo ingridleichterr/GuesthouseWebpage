@@ -2,6 +2,7 @@ package com.example.GuesthouseWebpage.controller;
 
 import com.example.GuesthouseWebpage.exceptions.BookingNotFoundException;
 import com.example.GuesthouseWebpage.model.Booking;
+import com.example.GuesthouseWebpage.model.Room;
 import com.example.GuesthouseWebpage.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -94,5 +95,10 @@ public class BookingController {
         return bookingService.getActiveBookings();
     }
 
+    @GetMapping
+    public List<Room> addRoomsToBooking(@PathVariable Room room){
+        return bookingService.addRoomsToBooking(room);
+
+    }
     //list all by
 }

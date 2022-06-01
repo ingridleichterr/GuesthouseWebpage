@@ -1,4 +1,7 @@
 package com.example.GuesthouseWebpage.controller;
+import com.example.GuesthouseWebpage.exceptions.RoomNotFoundException;
+import com.example.GuesthouseWebpage.exceptions.UserNotFoundException;
+import com.example.GuesthouseWebpage.model.Room;
 import com.example.GuesthouseWebpage.model.User;
 import com.example.GuesthouseWebpage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,15 +48,31 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable Long id) {
+        try{
+            User user = userService.findUserById(id);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (UserNotFoundException userNotFoundException){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
 
     @GetMapping
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
 
+
+
+    /*
     @GetMapping("/active")
     public List<User> getAllActiveUsers(){
         return userService.getActiveUsers();
     }
+
+     */
 
 }
