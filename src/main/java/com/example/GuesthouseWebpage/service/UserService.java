@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,6 +24,7 @@ public class UserService {
     //method to create user
     public void createUser(User user){
         user.setActive(true);
+        user.setRegistrationDate(LocalDate.now());
         userRepository.save(user);
     }
 
@@ -40,7 +42,6 @@ public class UserService {
     public Optional<User> findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
-
 
     public Optional<User> findByEmailAndPassword(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);
@@ -63,12 +64,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    //list all active users
-    public List<User> getActiveUsers(){
-        return getAllUsers().stream()
-                .filter(User::isActive)
-                .collect(Collectors.toList());
-    }
+
 
 
 }

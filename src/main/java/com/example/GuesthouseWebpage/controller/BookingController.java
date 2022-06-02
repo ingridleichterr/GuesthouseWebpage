@@ -95,10 +95,15 @@ public class BookingController {
         return bookingService.getActiveBookings();
     }
 
-    @GetMapping
-    public List<Room> addRoomsToBooking(@PathVariable Room room){
-        return bookingService.addRoomsToBooking(room);
+   /*
+   @GetMapping
+    ResponseEntity<?> BicDecimal calculateTotalAmountOfBooking(@PathVariable Booking booking){
 
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    */
+
+
     //list all by
 }

@@ -16,7 +16,7 @@ import java.util.List;
 
 //controller to handle user requests
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/signup")
 @CrossOrigin(origins = {"http://localhost:4200"})
 public class UserController {
 
@@ -56,7 +56,6 @@ public class UserController {
         } catch (UserNotFoundException userNotFoundException){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
     }
 
 
@@ -65,14 +64,16 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-
-
-    /*
-    @GetMapping("/active")
-    public List<User> getAllActiveUsers(){
-        return userService.getActiveUsers();
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody User userData) throws UserNotFoundException {
+            User user = userService.findUserById(userData.getId());
+            if (user.getPassword().equals(userData.getPassword())){
+                return ResponseEntity.ok(user);
+            }else {
+                return (ResponseEntity<?>) ResponseEntity.internalServerError();
+            }
     }
 
-     */
+
 
 }

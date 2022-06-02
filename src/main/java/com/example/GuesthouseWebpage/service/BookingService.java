@@ -103,11 +103,7 @@ public class BookingService {
         return totalBookingAmount;
     }
 
-    public List<Room> addRoomsToBooking(Room room){
-        List<Room>roomList=new ArrayList<>();
-        roomList.add(room);
-        return roomList;
-    }
+
 
     //list all bookings in one date you receive from user
 
