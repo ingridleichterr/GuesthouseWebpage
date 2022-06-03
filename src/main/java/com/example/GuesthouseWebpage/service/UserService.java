@@ -1,8 +1,8 @@
 package com.example.GuesthouseWebpage.service;
 
-import com.example.GuesthouseWebpage.exceptions.RoomNotFoundException;
+
 import com.example.GuesthouseWebpage.exceptions.UserNotFoundException;
-import com.example.GuesthouseWebpage.model.Room;
+
 import com.example.GuesthouseWebpage.model.User;
 import com.example.GuesthouseWebpage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -42,6 +43,8 @@ public class UserService {
     public Optional<User> findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+
 
     public Optional<User> findByEmailAndPassword(String email, String password) {
         return userRepository.findByEmailAndPassword(email, password);

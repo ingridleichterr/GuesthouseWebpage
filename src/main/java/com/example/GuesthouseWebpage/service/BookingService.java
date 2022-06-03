@@ -28,6 +28,8 @@ public class BookingService {
     //method to create booking
     public void createBooking(Booking booking){
         booking.setActive(true);
+        booking.setConfirmed(false);
+        booking.setPaid(false);
         bookingRepository.save(booking);
     }
 
