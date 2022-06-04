@@ -3,6 +3,7 @@ package com.example.GuesthouseWebpage.service;
 
 import com.example.GuesthouseWebpage.exceptions.UserNotFoundException;
 
+import com.example.GuesthouseWebpage.model.Authority;
 import com.example.GuesthouseWebpage.model.User;
 import com.example.GuesthouseWebpage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
+import static com.example.GuesthouseWebpage.utils.Constants.Security.AUTHORITY_USER;
 
 @Service
 @Transactional
@@ -22,10 +23,15 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AuthorityService authorityService;
+
     //method to create user
     public void createUser(User user){
         user.setActive(true);
         user.setRegistrationDate(LocalDate.now());
+        Optional<Authority> optionalAuthority = authorityService.findAuthorityByName(AUTHORITY_USER);
+        user.setAuthority(optionalAuthority.get());
         userRepository.save(user);
     }
 

@@ -5,11 +5,13 @@ import com.example.GuesthouseWebpage.model.Login;
 import com.example.GuesthouseWebpage.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 
 @Service
+@Transactional
 public class LoginService {
     @Autowired
     private UserService userService;

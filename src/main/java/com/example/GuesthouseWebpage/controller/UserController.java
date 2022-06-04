@@ -1,7 +1,5 @@
 package com.example.GuesthouseWebpage.controller;
-import com.example.GuesthouseWebpage.exceptions.RoomNotFoundException;
 import com.example.GuesthouseWebpage.exceptions.UserNotFoundException;
-import com.example.GuesthouseWebpage.model.Room;
 import com.example.GuesthouseWebpage.model.User;
 import com.example.GuesthouseWebpage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
